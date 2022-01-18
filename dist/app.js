@@ -11,6 +11,7 @@ const express = require("express");
 const config = require("config");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const http = require('http');
 const app = express();
 app.use(require("morgan")("dev"));
 const corsOptions = {
