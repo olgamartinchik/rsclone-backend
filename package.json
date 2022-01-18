@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "build":"tsc",
-    "server": "nodemon dist/app.js"  
-    
+    "server": "nodemon dist/app.js"     
   },
   "repository": {
     "type": "git",

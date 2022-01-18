@@ -8,7 +8,7 @@ const http = require('http');
 const app = express();
 
 app.get('/',(req:any,res:any)=>{
-res.send("Hello World!")
+res.send("Hello, World!")
 })
 
 app.use(require("morgan")("dev"));
