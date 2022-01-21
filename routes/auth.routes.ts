@@ -1,3 +1,4 @@
+import {Response, Request} from 'express'
 const { Router } = require("express");
 const bcrypt = require("bcryptjs");
 const config1 = require("config");
@@ -8,15 +9,18 @@ const router = Router();
 
 
 
-interface IDataParameters{
-  status:Function,
-  json:Function,  
-  body: {
-    userName?:string,
-  email:string,
-  password:string,
-},
-}
+
+// interface IDataParameters{
+  
+//   status:Function,
+//   json:Function,  
+//   body: {
+//     userName?:string,
+//   email:string,
+//   password:string,
+//   // params?:
+// },
+// }
 
 // /api/auth/register
 router.post(
@@ -32,7 +36,7 @@ router.post(
     //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/,
     //   )
   ],
-  async (req:IDataParameters , res:IDataParameters) => {
+  async (req:Request , res:Response) => {
     console.log("Body", req.body);
     try {
       const errors = validationResult(req);
@@ -74,7 +78,7 @@ router.post(
     check("email", "Incorrect email").isEmail().normalizeEmail(),
     check("password", "Enter password").exists(),
   ],
-  async (req:IDataParameters, res:IDataParameters) => {
+  async (req:Request, res:Response) => {
     console.log("Body", req.body);
     try {
       const errors = validationResult(req);
@@ -117,7 +121,7 @@ router.post(
 router.get(
   "/users",
 
-async (req:IDataParameters, res:IDataParameters)=>{
+async (req:Request, res:Response)=>{
  try{
   let users= await User.find()
   res.json(users)
@@ -129,7 +133,7 @@ async (req:IDataParameters, res:IDataParameters)=>{
 // /api/auth/id
 router.get(
   "/:id",
-  async(req:any,res:any)=>{
+  async(req:Request,res:Response)=>{
     try{
       let user= await User.findById(req.params.id)
       res.json(user)
