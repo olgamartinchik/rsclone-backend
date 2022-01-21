@@ -113,4 +113,29 @@ router.post(
   }
 );
 
+// /api/auth/users
+router.get(
+  "/users",
+
+async (req:IDataParameters, res:IDataParameters)=>{
+ try{
+  let users= await User.find()
+  res.json(users)
+ }catch(e){
+  res.status(500).json({message:'Something went wrong, please try again'})
+ }
+}
+)
+// /api/auth/id
+router.get(
+  "/:id",
+  async(req:any,res:any)=>{
+    try{
+      let user= await User.findById(req.params.id)
+      res.json(user)
+     }catch(e){
+      res.status(500).json({message:'Something went wrong, please try again'})
+     }
+  }
+)
 module.exports = router;
