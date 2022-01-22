@@ -11,7 +11,11 @@ const express = require("express");
 const config = require("config");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const http = require('http');
 const app = express();
+app.get('/', (req, res) => {
+    res.send("Hello, World!");
+});
 app.use(require("morgan")("dev"));
 const corsOptions = {
     origin: "*",
@@ -22,7 +26,8 @@ app.use(cors(corsOptions));
 // app.use(cors());
 app.use(express.json({ extended: true }));
 //initialize routs
-app.use("/api/auth", require("./routes/auth.routes"));
+app.use("/api/auth", require("../routes/auth.routes"));
+app.use("/api/workouts", require("../routes/workouts.routs"));
 const PORT = process.env.PORT || config.get("port");
 function start() {
     return __awaiter(this, void 0, void 0, function* () {

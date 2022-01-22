@@ -2,8 +2,14 @@ const express = require("express");
 const config = require("config");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const http = require('http');
+
 
 const app = express();
+
+app.get('/',(req:any,res:any)=>{
+res.send("Hello, World!")
+})
 
 app.use(require("morgan")("dev"));
 
@@ -19,8 +25,8 @@ app.use(cors(corsOptions));
 app.use(express.json({ extended: true }));
 
 //initialize routs
-app.use("/api/auth", require("./routes/auth.routes"));
-app.use("/api/workouts", require("./routes/workouts.routs"));
+app.use("/api/auth", require("../routes/auth.routes"));
+app.use("/api/workouts", require("../routes/workouts.routs"));
 
 const PORT = process.env.PORT || config.get("port");
 
