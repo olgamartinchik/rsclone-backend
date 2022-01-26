@@ -25,9 +25,9 @@ app.use(cors(corsOptions));
 app.use(express.json({ extended: true }));
 
 //initialize routs
-app.use("/api/auth", require("./routes/auth.routes"));
-app.use("/api/userSettings", require("./routes/userSettings.routs"));
-app.use("/api/workouts", require("./routes/workouts.routs"));
+app.use("/api/auth", require("../routes/auth.routes"));
+app.use("/api/userSettings", require("../routes/userSettings.routs"));
+app.use("/api/workouts", require("../routes/workouts.routs"));
 
 
 const PORT = process.env.PORT || config.get("port");
