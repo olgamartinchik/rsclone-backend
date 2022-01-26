@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "start": "tsc && node dist/app.js",
-    "server": "nodemon app.ts"
+    "start": "node dist/src/app.js",
+    "build":"tsc",
+    "server": "nodemon dist/src/app.js"     
   },
   "repository": {
     "type": "git",
