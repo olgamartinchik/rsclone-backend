@@ -5,8 +5,7 @@
   "main": "app.ts",
   "scripts": {
     "start": "tsc && node dist/app.js",
-    "server": "nodemon app.ts"  
-    
+    "server": "nodemon app.ts"
   },
   "repository": {
     "type": "git",
@@ -27,7 +26,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.6",
     "morgan": "^1.10.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "uuid": "^8.3.2"
   },
   "prettier": {
     "trailingComma": "es5",

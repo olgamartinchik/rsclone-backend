@@ -1,11 +1,6 @@
 import {Response, Request} from 'express'
 const { Router } = require("express");
-const bcrypt = require("bcryptjs");
-const config1 = require("config");
-const jwt = require("jsonwebtoken");
-
 const Workouts = require("../model/Workouts");
-
 const router = Router();
 
 // /api/workouts
