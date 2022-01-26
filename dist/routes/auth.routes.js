@@ -16,16 +16,6 @@ const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const User = require("../model/User");
 const router = Router();
-// interface IDataParameters{
-//   status:Function,
-//   json:Function,  
-//   body: {
-//     userName?:string,
-//   email:string,
-//   password:string,
-//   // params?:
-// },
-// }
 // /api/auth/register
 router.post("/register", 
 //массив валидаторов
