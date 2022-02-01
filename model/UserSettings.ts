@@ -2,7 +2,6 @@ const mongoose2 = require('mongoose');
 const UserSettingsSchema = mongoose2.Schema;
 
 
-
 const schema2= new UserSettingsSchema({
     userId:String,
     startDate:String,

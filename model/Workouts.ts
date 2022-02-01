@@ -1,8 +1,8 @@
 const mongoose1 = require('mongoose');
+const workoutsSchema=mongoose1.Schema
 
-const Schema1 = mongoose1.Schema;
 
-const schema1=new Schema1({
+const schema1=new workoutsSchema({
     title:String,
     description: String,
     equipment:String,
