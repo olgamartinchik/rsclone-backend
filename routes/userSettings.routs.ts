@@ -14,6 +14,7 @@ router.post(
     try{
         const { 
             userId,
+            startDate,
             goal, 
             weight, 
             height,
@@ -28,6 +29,7 @@ router.post(
 
         const userSettings=new UserSettings({
             userId,
+            startDate,
             goal,
             weight,
             height,
@@ -68,13 +70,14 @@ router.get(
 )
 
 // /api/userSettings/userId
-router.put(
+router.patch(
     "/:userId",
  async (req:Request , res:Response)=>{
     console.log("Body", req.body);
   
     try{
         const { 
+            startDate,
             goal, 
             weight, 
             height,
@@ -89,6 +92,7 @@ router.put(
         const userId = req.params.userId;
 
         const userSettings= await UserSettings.findOneAndUpdate({userId: userId}, {
+            startDate,
             goal,
             weight,
             height,

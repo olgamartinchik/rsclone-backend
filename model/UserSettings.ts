@@ -5,6 +5,7 @@ const UserSettingsSchema = mongoose2.Schema;
 
 const schema2= new UserSettingsSchema({
     userId:String,
+    startDate:String,
     goal:String,    
     weight: String,   
     height: String,
@@ -13,23 +14,8 @@ const schema2= new UserSettingsSchema({
     desiredWeight: String,    
     duration: String,   
     workoutsNumber:String,    
-    workoutLength:Object,
-    // {
-    //     min:String,
-    //     max:String},
-     favWorkouts: Array
-    //  {
-    //     dance:String,
-    //     boxing:String,
-    //     meditation:String,
-    //     strength:String,
-    //     cardio:String,
-    //     HIIT:String,
-    //     pilates:String,
-    //     stretch:String,
-    //     yoga:String,
-    // },
-
+    workoutLength:Object,    
+    favWorkouts: Array
 })
 
 module.exports = mongoose2.model("UserSettings", schema2);
