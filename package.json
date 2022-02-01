@@ -2,11 +2,11 @@
   "name": "rsclone",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "src/app.ts",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node dist/src/app.js",
     "build":"tsc",
-    "server": "nodemon app.ts"
+    "server": "nodemon src/app.ts"
   },
   "repository": {
     "type": "git",
