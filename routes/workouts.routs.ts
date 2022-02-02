@@ -1,5 +1,5 @@
-import {Response, Request} from 'express'
-const { Router } = require("express");
+import {Response, Request, Router} from 'express'
+// const { Router } = require("express");
 const Workouts = require("../model/Workouts");
 const router = Router();
 
