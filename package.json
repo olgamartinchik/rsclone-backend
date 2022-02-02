@@ -2,7 +2,8 @@
   "name": "rsclone",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/src/app.js",
+  "main": "dist/src/app",
+  "typings": "dist/src//app",
   "scripts": {
     "start": "tsc && node dist/src/app.js",
     "build": "tsc",
