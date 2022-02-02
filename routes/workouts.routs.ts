@@ -7,7 +7,7 @@ const router = Router();
 router.get(
 "/",
 
-async (req:Request, res:Response)=>{
+async (req:any, res:any)=>{
    
     try{
         let workouts=await Workouts.find()

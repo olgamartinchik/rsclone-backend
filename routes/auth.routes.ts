@@ -25,7 +25,7 @@ router.post(
     //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/,
     //   )
   ],
-  async (req:Request , res:Response) => {
+  async (req:any , res:any) => {
     console.log("Body", req.body);
     try {
       const errors = validationResult(req);
@@ -69,7 +69,7 @@ router.post(
     check("email", "Incorrect email").isEmail().normalizeEmail(),
     check("password", "Enter password").exists(),
   ],
-  async (req:Request, res:Response) => {
+  async (req:any, res:any) => {
     console.log("Body", req.body);
     try {
       const errors = validationResult(req);
@@ -112,7 +112,7 @@ router.post(
 router.get(
   "/users",
 
-async (req:Request, res:Response)=>{
+async (req:any, res:any)=>{
  try{
   let users= await User.find()
   res.json(users)
@@ -124,7 +124,7 @@ async (req:Request, res:Response)=>{
 // /api/auth/id
 router.get(
   "/:id",
-  async(req:Request,res:Response)=>{
+  async(req:any,res:any)=>{
     try{
       let user= await User.findById(req.params.id)
       res.json(user)

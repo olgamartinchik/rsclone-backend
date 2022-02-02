@@ -8,7 +8,7 @@ const router = Router();
 // /api/userSettings
 router.post(
     "/",
- async (req:Request , res:Response)=>{
+ async (req:any , res:any)=>{
     console.log("Body", req.body);
   
     try{
@@ -57,7 +57,7 @@ router.post(
 // /api/userSettings/userId
 router.get(
     "/:userId",
-    async (req:Request,res:Response)=>{
+    async (req:any,res:any)=>{
         try{
             console.log('req.params.userId', req.params.userId)
             let userSettings= await UserSettings.findOne({userId: req.params.userId})
@@ -72,7 +72,7 @@ router.get(
 // /api/userSettings/userId
 router.patch(
     "/:userId",
- async (req:Request , res:Response)=>{
+ async (req:any , res:any)=>{
     console.log("Body", req.body);
   
     try{
