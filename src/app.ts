@@ -28,7 +28,7 @@ app.use(express.json({ extended: true }));
 app.use("/api/auth", require("../routes/auth.routes"));
 app.use("/api/userSettings", require("../routes/userSettings.routs"));
 app.use("/api/workouts", require("../routes/workouts.routs"));
-
+app.use("/api/workoutSettings", require("../routes/workoutSettings.routs"));
 
 const PORT = process.env.PORT || config.get("port");
 
