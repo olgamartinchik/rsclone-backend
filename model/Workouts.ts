@@ -1,17 +1,17 @@
-const mongoose1 = require('mongoose');
+const mongooseW = require('mongoose');
 
-const Schema1 = mongoose1.Schema;
+const SchemaW = mongooseW.Schema;
 
-const schema1=new Schema1({
-    title:String,
+const schemaW = new SchemaW({
+    title: String,
     description: String,
-    equipment:String,
-    type:String,
-    intensity:String,
-    duration:Number,
-    caloriesPerMinute:Number,
-    link:String,
-    img:String
-})
+    equipment: String,
+    type: String,
+    intensity: String,
+    duration: Number,
+    caloriesPerMinute: Number,
+    link: String,
+    img: String,
+});
 
-module.exports = mongoose1.model("Workouts", schema1);
+module.exports = mongooseW.model('Workouts', schemaW);

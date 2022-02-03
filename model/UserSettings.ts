@@ -1,22 +1,19 @@
-const mongoose2 = require('mongoose');
-const UserSettingsSchema = mongoose2.Schema;
+const mongooseUS = require('mongoose');
+const SchemaUS = mongooseUS.Schema;
 
+const schemaUS = new SchemaUS({
+    userId: String,
+    startDate: String,
+    goal: String,
+    weight: Number,
+    height: Number,
+    age: Number,
+    gender: String,
+    desiredWeight: Number,
+    duration: Number,
+    workoutsNumber: Number,
+    workoutLength: Object,
+    favWorkouts: Array,
+});
 
-
-const schema2= new UserSettingsSchema({
-    userId:String,
-    startDate:String,
-    goal:String,    
-    weight: String,   
-    height: String,
-    age: String,
-    gender:String, 
-    desiredWeight: String,    
-    duration: String,   
-    workoutsNumber:String,    
-    workoutLength:Object,    
-    favWorkouts: Array
-})
-
-module.exports = mongoose2.model("UserSettings", schema2);
-
+module.exports = mongooseUS.model('UserSettings', schemaUS);
