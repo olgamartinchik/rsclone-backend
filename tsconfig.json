@@ -9,7 +9,7 @@
         "noImplicitAny": true
     },
     "typeRoots": [
-        "./typings",
+        "./types",
         "./node_modules/@types/"
       ],
     "lib": ["es2015"]
