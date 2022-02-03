@@ -8,5 +8,9 @@
         "outDir": "dist",
         "noImplicitAny": true
     },
+    "typeRoots": [
+        "./typings",
+        "./node_modules/@types/"
+      ],
     "lib": ["es2015"]
 }
