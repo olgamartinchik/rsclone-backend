@@ -111,5 +111,15 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 }));
+// /api/auth/id
+router.delete('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield User.findByIdAndRemove({ _id: req.params.id });
+        res.send(user);
+    }
+    catch (e) {
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+}));
 module.exports = router;
 //# sourceMappingURL=auth.routes.js.map
