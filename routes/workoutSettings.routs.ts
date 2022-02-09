@@ -8,42 +8,23 @@ router.post('/', async (req: Request, res: Response) => {
     console.log('Body');
     console.log('Body', req.body);
     try {
-        const {
-            title,
-            description,
-            equipment,
-            type,
-            intensity,
-            duration,
-            caloriesPerMinute,
-            link,
-            img,
-            completed,
+        const {           
             _id,
+            program
         } = req.body;
 
-        const workoutSettings = new WorkoutSettings({
-            title,
-            description,
-            equipment,
-            type,
-            intensity,
-            duration,
-            caloriesPerMinute,
-            link,
-            img,
-            completed,
+        const workoutSettings = new WorkoutSettings({          
             _id,
+            program
         });
         const workoutSettingsId = await WorkoutSettings.findOne({ _id });
         if (workoutSettingsId) {
             return res.status(400).json({ message: 'Workout settings already created' });
         }
-        await workoutSettings.save();
-        const settings = [[workoutSettings]];
+        await workoutSettings.save();        
 
-        res.status(201).json({ message: 'Settings created', _id, settings });
-        // res.send([[workoutSettings]])
+        res.status(201).json({ message: 'Settings created', _id, workoutSettings });
+        
     } catch (e) {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
@@ -54,7 +35,7 @@ router.post('/', async (req: Request, res: Response) => {
 router.get('/:id', async (req: Request, res: Response) => {
     try {
         const workoutSettings = await WorkoutSettings.findById(req.params.id);
-        res.json([[workoutSettings]]);
+        res.json(workoutSettings);
     } catch (e) {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
@@ -64,7 +45,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 router.patch('/:id', async (req: Request, res: Response) => {
     console.log('body', req.body);
     try {
-        const { title, description, equipment, type, intensity, duration, caloriesPerMinute, link, img, completed } =
+        const { program } =
             req.body;
 
         const wsId = req.params.id;
@@ -72,19 +53,10 @@ router.patch('/:id', async (req: Request, res: Response) => {
         await WorkoutSettings.findByIdAndUpdate(
             { _id: wsId },
             {
-                title,
-                description,
-                equipment,
-                type,
-                intensity,
-                duration,
-                caloriesPerMinute,
-                link,
-                img,
-                completed,
+                program
             }
         );
-        const updateWS = [[await WorkoutSettings.findOne({ _id: wsId })]];
+        const updateWS = await WorkoutSettings.findOne({ _id: wsId });
         res.status(201).json({ message: 'Settings update', updateWS });
     } catch (e) {
         res.status(500).json({ message: 'Something went wrong, please try again' });
