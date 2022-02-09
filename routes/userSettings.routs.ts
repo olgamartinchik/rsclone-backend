@@ -110,4 +110,17 @@ router.patch('/:userId', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
+
+// /api/userSettings/userId
+router.delete('/:userId', async (req: Request, res: Response) => {
+    try {
+        const userSettings = await UserSettings.findOneAndDelete({ userId: req.params.userId });
+
+        res.send(userSettings);
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
+
 module.exports = router;

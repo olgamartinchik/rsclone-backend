@@ -117,4 +117,15 @@ router.get('/:id', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
+
+// /api/auth/id
+router.delete('/:id', async (req: Request, res: Response) => {
+    try {
+        const user = await User.findByIdAndRemove({_id:req.params.id});
+        res.send(user)        
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
+
 module.exports = router;

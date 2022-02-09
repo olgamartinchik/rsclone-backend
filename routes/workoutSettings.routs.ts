@@ -91,4 +91,14 @@ router.patch('/:id', async (req: Request, res: Response) => {
     }
 });
 
+// /api/workoutSettings/id
+
+router.delete('/:id', async (req: Request, res: Response) => {
+    try {
+        const workoutSettings = await WorkoutSettings.findByIdAndRemove({_id:req.params.id});
+        res.send(workoutSettings);
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+});
 module.exports = router;
