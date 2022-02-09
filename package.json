@@ -2,9 +2,9 @@
     "name": "rsclone",
     "version": "1.0.0",
     "description": "",
-    "main": "app.ts",
+    "main": "app",
     "scripts": {
-        "start": "tsc && node dist/src/app.js",
+        "start": "tsc && node dist/src/app",
         "build": "tsc",
         "lint": "eslint . --ext .ts && prettier --check .",
         "lint:fix": "eslint . --ext .ts --fix && prettier --write .",

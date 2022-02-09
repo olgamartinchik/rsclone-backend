@@ -19,6 +19,10 @@ router.post('/', async (req: Request, res: Response) => {
             workoutsNumber,
             workoutLength: { min, max },
             favWorkouts,
+            caloriesBurned,
+            badges,
+            heightUnit,
+            weightUnit
         } = req.body;
 
         const userSettings = new UserSettings({
@@ -34,6 +38,10 @@ router.post('/', async (req: Request, res: Response) => {
             workoutsNumber,
             workoutLength: { min, max },
             favWorkouts,
+            caloriesBurned,
+            badges,
+            heightUnit,
+            weightUnit
         });
 
         await userSettings.save();
@@ -69,6 +77,10 @@ router.patch('/:userId', async (req: Request, res: Response) => {
             workoutsNumber,
             workoutLength: { min, max },
             favWorkouts,
+            caloriesBurned,
+            badges,
+            heightUnit,
+            weightUnit
         } = req.body;
         const userId = req.params.userId;
 
@@ -86,6 +98,10 @@ router.patch('/:userId', async (req: Request, res: Response) => {
                 workoutsNumber,
                 workoutLength: { min, max },
                 favWorkouts,
+                caloriesBurned,
+                badges,
+                heightUnit,
+                weightUnit
             }
         );
         const updateUserSettings = await UserSettings.findOne({ userId: userId });

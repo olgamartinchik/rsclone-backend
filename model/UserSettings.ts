@@ -14,6 +14,11 @@ const schemaUS = new SchemaUS({
     workoutsNumber: Number,
     workoutLength: Object,
     favWorkouts: Array,
+    caloriesBurned: Number,
+    badges: Array,
+    heightUnit:String,
+    weightUnit:String
+
 });
 
 module.exports = mongooseUS.model('UserSettings', schemaUS);
