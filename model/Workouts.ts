@@ -12,6 +12,7 @@ const schemaW = new SchemaW({
     caloriesPerMinute: Number,
     link: String,
     img: String,
+    completed:Boolean
 });
 
 module.exports = mongooseW.model('Workouts', schemaW);
