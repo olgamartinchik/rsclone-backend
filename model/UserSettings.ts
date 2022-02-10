@@ -12,12 +12,13 @@ const schemaUS = new SchemaUS({
     desiredWeight: Number,
     duration: Number,
     workoutsNumber: Number,
-    workoutLength: Object,
     favWorkouts: Array,
-    caloriesBurned: Number,
+    caloriesBurned: {type:Number, default:0},
     badges: Array,
-    heightUnit:String,
-    weightUnit:String
+    heightUnit:{type:String, default:''},
+    weightUnit:{type:String, default:''},
+    workoutCompleted:{type:Number, default:0},
+    liked:Array
 
 });
 

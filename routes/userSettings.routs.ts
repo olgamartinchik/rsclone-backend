@@ -17,12 +17,13 @@ router.post('/', async (req: Request, res: Response) => {
             desiredWeight,
             duration,
             workoutsNumber,
-            workoutLength: { min, max },
             favWorkouts,
             caloriesBurned,
             badges,
             heightUnit,
-            weightUnit
+            weightUnit,
+            workoutCompleted,
+            liked
         } = req.body;
 
         const userSettings = new UserSettings({
@@ -36,12 +37,13 @@ router.post('/', async (req: Request, res: Response) => {
             desiredWeight,
             duration,
             workoutsNumber,
-            workoutLength: { min, max },
             favWorkouts,
             caloriesBurned,
             badges,
             heightUnit,
-            weightUnit
+            weightUnit,
+            workoutCompleted,
+            liked
         });
 
         await userSettings.save();
@@ -74,13 +76,14 @@ router.patch('/:userId', async (req: Request, res: Response) => {
             gender,
             desiredWeight,
             duration,
-            workoutsNumber,
-            workoutLength: { min, max },
+            workoutsNumber,            
             favWorkouts,
             caloriesBurned,
             badges,
             heightUnit,
-            weightUnit
+            weightUnit,
+            workoutCompleted,
+            liked
         } = req.body;
         const userId = req.params.userId;
 
@@ -95,13 +98,14 @@ router.patch('/:userId', async (req: Request, res: Response) => {
                 gender,
                 desiredWeight,
                 duration,
-                workoutsNumber,
-                workoutLength: { min, max },
+                workoutsNumber,                
                 favWorkouts,
                 caloriesBurned,
                 badges,
                 heightUnit,
-                weightUnit
+                weightUnit,
+                workoutCompleted,
+                liked
             }
         );
         const updateUserSettings = await UserSettings.findOne({ userId: userId });
