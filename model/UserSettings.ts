@@ -17,7 +17,8 @@ const schemaUS = new SchemaUS({
     badges: Array,
     heightUnit:{type:String, default:''},
     weightUnit:{type:String, default:''},
-    workoutCompleted:{type:Number, default:0},
+    completedWorkouts:{type:Number, default:0},
+    weekProgress:{currentWeek: Number, calories: Number, workoutsNumber: Number, workoutsCompleted: Number, minutes:Number },
     liked:Array
 
 });

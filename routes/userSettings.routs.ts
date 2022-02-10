@@ -22,7 +22,8 @@ router.post('/', async (req: Request, res: Response) => {
             badges,
             heightUnit,
             weightUnit,
-            workoutCompleted,
+            completedWorkouts,
+            weekProgress,
             liked
         } = req.body;
 
@@ -42,7 +43,8 @@ router.post('/', async (req: Request, res: Response) => {
             badges,
             heightUnit,
             weightUnit,
-            workoutCompleted,
+            completedWorkouts,
+            weekProgress,
             liked
         });
 
@@ -81,8 +83,9 @@ router.patch('/:userId', async (req: Request, res: Response) => {
             caloriesBurned,
             badges,
             heightUnit,
-            weightUnit,
-            workoutCompleted,
+            weightUnit,           
+            completedWorkouts,
+            weekProgress,
             liked
         } = req.body;
         const userId = req.params.userId;
@@ -103,8 +106,9 @@ router.patch('/:userId', async (req: Request, res: Response) => {
                 caloriesBurned,
                 badges,
                 heightUnit,
-                weightUnit,
-                workoutCompleted,
+                weightUnit, 
+                completedWorkouts,
+                weekProgress,
                 liked
             }
         );
