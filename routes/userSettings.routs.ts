@@ -17,12 +17,14 @@ router.post('/', async (req: Request, res: Response) => {
             desiredWeight,
             duration,
             workoutsNumber,
-            workoutLength: { min, max },
+            
             favWorkouts,
             caloriesBurned,
             badges,
             heightUnit,
-            weightUnit
+            weightUnit,
+            workoutCompleted,
+            liked
         } = req.body;
 
         const userSettings = new UserSettings({
@@ -36,12 +38,14 @@ router.post('/', async (req: Request, res: Response) => {
             desiredWeight,
             duration,
             workoutsNumber,
-            workoutLength: { min, max },
+           
             favWorkouts,
             caloriesBurned,
             badges,
             heightUnit,
-            weightUnit
+            weightUnit,
+            workoutCompleted,
+            liked
         });
 
         await userSettings.save();
