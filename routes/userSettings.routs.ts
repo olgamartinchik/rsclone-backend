@@ -8,6 +8,7 @@ router.post('/', async (req: Request, res: Response) => {
     try {
         const {
             userId,
+            photo,
             startDate,
             goal,
             weight,
@@ -24,11 +25,13 @@ router.post('/', async (req: Request, res: Response) => {
             weightUnit,
             completedWorkouts,
             weekProgress,
-            liked
+            liked,
+            progress
         } = req.body;
 
         const userSettings = new UserSettings({
             userId,
+            photo,
             startDate,
             goal,
             weight,
@@ -45,7 +48,8 @@ router.post('/', async (req: Request, res: Response) => {
             weightUnit,
             completedWorkouts,
             weekProgress,
-            liked
+            liked,
+            progress
         });
 
         await userSettings.save();
@@ -70,6 +74,7 @@ router.get('/:userId', async (req: Request, res: Response) => {
 router.patch('/:userId', async (req: Request, res: Response) => {
     try {
         const {
+            photo,
             startDate,
             goal,
             weight,
@@ -86,13 +91,15 @@ router.patch('/:userId', async (req: Request, res: Response) => {
             weightUnit,           
             completedWorkouts,
             weekProgress,
-            liked
+            liked,
+            progress
         } = req.body;
         const userId = req.params.userId;
 
         await UserSettings.findOneAndUpdate(
             { userId: userId },
             {
+                photo,
                 startDate,
                 goal,
                 weight,
@@ -109,7 +116,8 @@ router.patch('/:userId', async (req: Request, res: Response) => {
                 weightUnit, 
                 completedWorkouts,
                 weekProgress,
-                liked
+                liked,
+                progress
             }
         );
         const updateUserSettings = await UserSettings.findOne({ userId: userId });
@@ -130,5 +138,14 @@ router.delete('/:userId', async (req: Request, res: Response) => {
     }
 });
 
+// const  uploadAvatar=async(req: Request, res: Response)=>{
+// try{
+//     const file=req.files.file
+//     const user =  await UserSettings.findOne({ userId: userId });
+
+// }catch(e){
+//     res.status(500).json({ message: 'Something went wrong, please try again' });
+// }
+// }
 
 module.exports = router;
