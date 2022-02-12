@@ -138,14 +138,7 @@ router.delete('/:userId', async (req: Request, res: Response) => {
     }
 });
 
-// const  uploadAvatar=async(req: Request, res: Response)=>{
-// try{
-//     const file=req.files.file
-//     const user =  await UserSettings.findOne({ userId: userId });
+// 
 
-// }catch(e){
-//     res.status(500).json({ message: 'Something went wrong, please try again' });
-// }
-// }
 
 module.exports = router;
