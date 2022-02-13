@@ -2,10 +2,7 @@ const mongooseUS = require('mongoose');
 const SchemaUS = mongooseUS.Schema;
 
 const schemaUS = new SchemaUS({
-    userId: String,
-    photo: {
-        type: String, required: false
-    },
+    userId: String,   
     startDate: String,
     goal: String,
     weight: Number,

@@ -1,4 +1,5 @@
 import { Response, Request } from 'express';
+const fs = require('fs')
 const { Router } = require('express');
 const bcrypt = require('bcryptjs');
 const config1 = require('config');
@@ -6,6 +7,10 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const User = require('../model/User');
 const router = Router();
+const Uuid=require('uuid')
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+const fileMiddleware=require('../middleware/file')
 
 // /api/auth/register
 router.post(
@@ -47,7 +52,7 @@ router.post(
                 expiresIn: '1h',
             });
             await user.save();
-            res.status(201).json({ message: 'User created', token, userId: user.id });
+            res.status(201).json({ message: 'User created', token, userId: user.id, userName:user.userName, email:user.email,avatar:user.avatar });
         } catch (e) {
             res.status(500).json({ message: 'Something went wrong, please try again' });
         }
@@ -88,6 +93,7 @@ router.post(
                 userId: user.id,
                 userName: user.userName,
                 email: email,
+                avatar:user.avatar
             });
         } catch (e) {
             res.status(500).json({ message: 'Something went wrong, please try again' });
@@ -117,15 +123,64 @@ router.get('/:id', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
+// /api/auth/id
+router.patch('/:id', async (req: Request, res: Response)=>{
+    try{
+        const {userName}= req.body;
+        const id = req.params.id;
+        await User.findOneAndUpdate({_id:id}, {userName})
+        const updateUserName = await User.findById(req.params.id);
+        res.status(201).json({ message: 'Settings update', updateUserName });
+    }catch(e){
+        res.status(500).json({ message: 'Something went wrong, please try again' });
+    }
+})
 
 // /api/auth/id
 router.delete('/:id', async (req: Request, res: Response) => {
     try {
+        
         const user = await User.findByIdAndRemove({_id:req.params.id});
         res.send(user)        
     } catch (e) {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
+
+
+// /api/auth/avatar
+router.post('/avatar/:id',   async(req: Request, res: Response)=>{
+    try {
+
+        const file=(req as any).files.file;
+        console.log('wwwww', req.params.id)
+        const user = await User.findById((req as any).params.id);
+        console.log('user', req.body)
+        const avatarName=Uuid.v4()+'.jpg'
+        file.mv(config1.get('staticPath')+"\\"+avatarName)
+        user.avatar = avatarName
+       await user.save()   
+       return res.json(user)     
+    } catch (e) {
+        res.status(500).json({ message: 'Uploaded avatar error', error: e });
+    }
+})
+// /api/auth/avatar
+router.delete('/avatar/:id', async(req: Request, res: Response)=>{
+    try {      
+       const user = await User.findById(req.params.id);
+      
+    //    fs.unlinksSync(config1.get('staticPath')+"\\"+user.avatar)        
+       user.avatar = null
+       await user.save()   
+       return res.json(user)     
+    } catch (e) {
+        res.status(500).json({ message: 'Delete avatar error' });
+    }
+})
+
+
+
+
 
 module.exports = router;

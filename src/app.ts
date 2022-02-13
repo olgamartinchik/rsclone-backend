@@ -2,8 +2,8 @@ const express = require('express');
 const config = require('config');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
 const app = express();
+// const authMiddleware = require('../middleware/auth.middleware')
 
 app.use(require('morgan')('dev'));
 
