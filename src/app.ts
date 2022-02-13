@@ -22,11 +22,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 // app.use(cors());
-<<<<<<< HEAD
 app.use(fileupload());
-=======
-
->>>>>>> 22ead319390acab70806819e48d8d5b646586283
 app.use(express.json({ extended: true }));
 app.use(express.static('../static/'));
 
