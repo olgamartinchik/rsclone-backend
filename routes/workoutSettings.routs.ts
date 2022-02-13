@@ -8,23 +8,19 @@ router.post('/', async (req: Request, res: Response) => {
     console.log('Body');
     console.log('Body', req.body);
     try {
-        const {           
-            _id,
-            program
-        } = req.body;
+        const { _id, program } = req.body;
 
-        const workoutSettings = new WorkoutSettings({          
+        const workoutSettings = new WorkoutSettings({
             _id,
-            program
+            program,
         });
         const workoutSettingsId = await WorkoutSettings.findOne({ _id });
         if (workoutSettingsId) {
             return res.status(400).json({ message: 'Workout settings already created' });
         }
-        await workoutSettings.save();        
+        await workoutSettings.save();
 
         res.status(201).json({ message: 'Settings created', _id, workoutSettings });
-        
     } catch (e) {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
@@ -45,15 +41,14 @@ router.get('/:id', async (req: Request, res: Response) => {
 router.patch('/:id', async (req: Request, res: Response) => {
     console.log('body', req.body);
     try {
-        const { program } =
-            req.body;
+        const { program } = req.body;
 
         const wsId = req.params.id;
         console.log('wsId', wsId);
         await WorkoutSettings.findByIdAndUpdate(
             { _id: wsId },
             {
-                program
+                program,
             }
         );
         const updateWS = await WorkoutSettings.findOne({ _id: wsId });
@@ -67,7 +62,7 @@ router.patch('/:id', async (req: Request, res: Response) => {
 
 router.delete('/:id', async (req: Request, res: Response) => {
     try {
-        const workoutSettings = await WorkoutSettings.findByIdAndRemove({_id:req.params.id});
+        const workoutSettings = await WorkoutSettings.findByIdAndRemove({ _id: req.params.id });
         res.send(workoutSettings);
     } catch (e) {
         res.status(500).json({ message: 'Something went wrong, please try again' });

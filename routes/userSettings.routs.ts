@@ -26,7 +26,7 @@ router.post('/', async (req: Request, res: Response) => {
             completedWorkouts,
             weekProgress,
             liked,
-            progress
+            progress,
         } = req.body;
 
         const userSettings = new UserSettings({
@@ -49,7 +49,7 @@ router.post('/', async (req: Request, res: Response) => {
             completedWorkouts,
             weekProgress,
             liked,
-            progress
+            progress,
         });
 
         await userSettings.save();
@@ -83,16 +83,16 @@ router.patch('/:userId', async (req: Request, res: Response) => {
             gender,
             desiredWeight,
             duration,
-            workoutsNumber,            
+            workoutsNumber,
             favWorkouts,
             caloriesBurned,
             badges,
             heightUnit,
-            weightUnit,           
+            weightUnit,
             completedWorkouts,
             weekProgress,
             liked,
-            progress
+            progress,
         } = req.body;
         const userId = req.params.userId;
 
@@ -108,16 +108,16 @@ router.patch('/:userId', async (req: Request, res: Response) => {
                 gender,
                 desiredWeight,
                 duration,
-                workoutsNumber,                
+                workoutsNumber,
                 favWorkouts,
                 caloriesBurned,
                 badges,
                 heightUnit,
-                weightUnit, 
+                weightUnit,
                 completedWorkouts,
                 weekProgress,
                 liked,
-                progress
+                progress,
             }
         );
         const updateUserSettings = await UserSettings.findOne({ userId: userId });
@@ -137,7 +137,5 @@ router.delete('/:userId', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
-
-
 
 module.exports = router;
