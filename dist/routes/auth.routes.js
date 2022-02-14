@@ -19,14 +19,9 @@ const User = require('../model/User');
 const authMiddleware = require('../middleware/auth.middleware');
 const router = Router();
 // /api/auth/register
-router.post('/register', 
-//массив валидаторов
-[
+router.post('/register', [
     check('email', 'Incorrect email').isEmail(),
     check('password', 'Password must include one lowercase character, one uppercase character, a number, and a special character.').isLength({ min: 6 }),
-    // .matches(
-    //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/,
-    //   )
 ], (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const errors = validationResult(req);
@@ -65,7 +60,7 @@ router.post('/register',
     }
 }));
 // /api/auth/login
-router.post('/login', authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -101,31 +96,6 @@ router.post('/login', authMiddleware, (req, res) => __awaiter(void 0, void 0, vo
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 }));
-/////////////////////////////////////////////////
-// /api/auth
-// router.get(
-//     '/auth',
-//     authMiddleware,
-//     async (req: Request, res: Response) => {
-//         try {
-//             const user =await User.findOne({_id:(req as any).user.id})
-//             const token = jwt.sign({ userId: user.id }, userConfig.get('jwtSecret'), {
-//                 expiresIn: '1h',
-//             });
-//             res.json({
-//                 token,
-//                 user:{                
-//                 userId: user.id,
-//                 userName: user.userName,
-//                 email: user.email,
-//                 avatar: user.avatar,
-//             }});
-//         } catch (e) {
-//             res.status(500).json({ message: 'Something went wrong, please try again' });
-//         }
-//     }
-// );
-////////////////////////////////////////////////////
 // /api/auth/users
 router.get('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

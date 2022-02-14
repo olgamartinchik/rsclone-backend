@@ -13,17 +13,14 @@ const router = Router();
 
 // /api/auth/register
 router.post(
-    '/register',
-    //массив валидаторов
+    '/register',    
     [
         check('email', 'Incorrect email').isEmail(),
         check(
             'password',
             'Password must include one lowercase character, one uppercase character, a number, and a special character.'
         ).isLength({ min: 6 }),
-        // .matches(
-        //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/,
-        //   )
+       
     ],
     async (req: Request, res: Response) => {
         try {
@@ -68,7 +65,7 @@ router.post(
 // /api/auth/login
 router.post(
     '/login',
-    authMiddleware,
+    
     async (req: Request, res: Response) => {
         try {
             const errors = validationResult(req);
@@ -106,35 +103,6 @@ router.post(
         }
     }
 );
-/////////////////////////////////////////////////
-// /api/auth
-// router.get(
-//     '/auth',
-//     authMiddleware,
-//     async (req: Request, res: Response) => {
-//         try {
-//             const user =await User.findOne({_id:(req as any).user.id})
-//             const token = jwt.sign({ userId: user.id }, userConfig.get('jwtSecret'), {
-//                 expiresIn: '1h',
-//             });
-
-//             res.json({
-//                 token,
-//                 user:{                
-//                 userId: user.id,
-//                 userName: user.userName,
-//                 email: user.email,
-//                 avatar: user.avatar,
-//             }});
-//         } catch (e) {
-//             res.status(500).json({ message: 'Something went wrong, please try again' });
-//         }
-//     }
-// );
-////////////////////////////////////////////////////
-
-
-
 
 // /api/auth/users
 router.get(
