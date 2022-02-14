@@ -27,6 +27,7 @@ const schemaUS = new SchemaUS({
     },
     liked: Array,
     progress: { type: Array, default: [] },
+    birthday: { type: String, default: '' },
 });
 
 module.exports = mongooseUS.model('UserSettings', schemaUS);

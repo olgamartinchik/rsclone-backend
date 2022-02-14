@@ -6,7 +6,7 @@ const http = require('http');
 const fileupload = require("express-fileupload");
 
 const app = express();
-// const authMiddleware = require('../middleware/auth.middleware')
+const authMiddleware = require('../middleware/auth.middleware')
 
 app.get('/',(req:any,res:any)=>{
 res.send("Hello, World!")
@@ -27,6 +27,8 @@ app.use(express.json({ extended: true }));
 app.use(express.static('../static/'));
 
 //initialize routs
+// app.use("/api",authMiddleware, require("../routes/avatar.routes"));
+app.use("/api", require("../routes/avatar.routes"));
 app.use("/api/auth", require("../routes/auth.routes"));
 app.use("/api/userSettings", require("../routes/userSettings.routs"));
 app.use("/api/workouts", require("../routes/workouts.routs"));

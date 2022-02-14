@@ -2,12 +2,14 @@ import { Response, Request } from 'express';
 const fs = require('fs');
 const { Router } = require('express');
 const bcrypt = require('bcryptjs');
-const config1 = require('config');
+const userConfig = require('config');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const User = require('../model/User');
+const authMiddleware = require('../middleware/auth.middleware')
+
 const router = Router();
-const Uuid = require('uuid');
+
 
 // /api/auth/register
 router.post(
@@ -45,7 +47,7 @@ router.post(
             const hashedPassword = await bcrypt.hash(password, 12);
 
             const user = new User({ userName, email, password: hashedPassword });
-            const token = jwt.sign({ userId: user.id }, config1.get('jwtSecret'), {
+            const token = jwt.sign({ userId: user.id }, userConfig.get('jwtSecret'), {
                 expiresIn: '1h',
             });
             await user.save();
@@ -66,8 +68,7 @@ router.post(
 // /api/auth/login
 router.post(
     '/login',
-    //массив валидаторов
-    [check('email', 'Incorrect email').isEmail().normalizeEmail(), check('password', 'Enter password').exists()],
+    authMiddleware,
     async (req: Request, res: Response) => {
         try {
             const errors = validationResult(req);
@@ -87,23 +88,53 @@ router.post(
                 return res.status(400).json({ message: 'Invalid password' });
             }
 
-            const token = jwt.sign({ userId: user.id }, config1.get('jwtSecret'), {
+            const token = jwt.sign({ userId: user.id }, userConfig.get('jwtSecret'), {
                 expiresIn: '1h',
             });
 
             //по умолчанию статус 200
             res.json({
                 token,
+                user:{                
                 userId: user.id,
                 userName: user.userName,
-                email: email,
+                email: user.email,
                 avatar: user.avatar,
-            });
+            }});
         } catch (e) {
             res.status(500).json({ message: 'Something went wrong, please try again' });
         }
     }
 );
+/////////////////////////////////////////////////
+// /api/auth
+// router.get(
+//     '/auth',
+//     authMiddleware,
+//     async (req: Request, res: Response) => {
+//         try {
+//             const user =await User.findOne({_id:(req as any).user.id})
+//             const token = jwt.sign({ userId: user.id }, userConfig.get('jwtSecret'), {
+//                 expiresIn: '1h',
+//             });
+
+//             res.json({
+//                 token,
+//                 user:{                
+//                 userId: user.id,
+//                 userName: user.userName,
+//                 email: user.email,
+//                 avatar: user.avatar,
+//             }});
+//         } catch (e) {
+//             res.status(500).json({ message: 'Something went wrong, please try again' });
+//         }
+//     }
+// );
+////////////////////////////////////////////////////
+
+
+
 
 // /api/auth/users
 router.get(
@@ -150,34 +181,6 @@ router.delete('/:id', async (req: Request, res: Response) => {
     }
 });
 
-// /api/auth/avatar
-router.post('/avatar/:id', async (req: Request, res: Response) => {
-    try {
-        const file = (req as any).files.file;
-        console.log('wwwww', req.params.id);
-        const user = await User.findById((req as any).params.id);
-        console.log('user', req.body);
-        const avatarName = Uuid.v4() + '.jpg';
-        file.mv(config1.get('staticPath') + '\\' + avatarName);
-        user.avatar = avatarName;
-        await user.save();
-        return res.json(user);
-    } catch (e) {
-        res.status(500).json({ message: 'Uploaded avatar error', error: e });
-    }
-});
-// /api/auth/avatar
-router.delete('/avatar/:id', async (req: Request, res: Response) => {
-    try {
-        const user = await User.findById(req.params.id);
 
-        //    fs.unlinksSync(config1.get('staticPath')+"\\"+user.avatar)
-        user.avatar = null;
-        await user.save();
-        return res.json(user);
-    } catch (e) {
-        res.status(500).json({ message: 'Delete avatar error' });
-    }
-});
 
 module.exports = router;

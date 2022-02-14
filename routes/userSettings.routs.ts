@@ -27,6 +27,7 @@ router.post('/', async (req: Request, res: Response) => {
             weekProgress,
             liked,
             progress,
+            birthday
         } = req.body;
 
         const userSettings = new UserSettings({
@@ -50,6 +51,7 @@ router.post('/', async (req: Request, res: Response) => {
             weekProgress,
             liked,
             progress,
+            birthday
         });
 
         await userSettings.save();
@@ -93,6 +95,7 @@ router.patch('/:userId', async (req: Request, res: Response) => {
             weekProgress,
             liked,
             progress,
+            birthday
         } = req.body;
         const userId = req.params.userId;
 
@@ -118,6 +121,7 @@ router.patch('/:userId', async (req: Request, res: Response) => {
                 weekProgress,
                 liked,
                 progress,
+                birthday
             }
         );
         const updateUserSettings = await UserSettings.findOne({ userId: userId });
