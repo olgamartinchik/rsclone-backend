@@ -17,7 +17,7 @@ router.post('/avatar/:id',cors(corsOptions), async (req: Request, res: Response)
         file.mv(avatarConfig.get('staticPath') + '\\' + avatarName);
         user.avatar = avatarName;
         await user.save();
-        res.sendFile(avatarConfig.get('staticPath')+"\\"+user.avatar);
+        return res.json({avatar:user.avatar});
     } catch (e) {
         
         res.status(500).json({ message: 'Uploaded avatar error', error: e });

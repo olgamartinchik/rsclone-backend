@@ -7,7 +7,7 @@ const schema = new Schema({
         type: String,
         default: null,
     },
-    files: [{ type: Types.ObjectId, ref: 'File' }],
+    newPassword: { type: String, required: false, default: '' },
 });
 module.exports = model('User', schema);
 //# sourceMappingURL=User.js.map
