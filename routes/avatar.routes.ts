@@ -5,6 +5,7 @@ const router = Router();
 const User = require('../model/User');
 const avatarConfig = require('config');
 const Uuid = require('uuid');
+const cors = require("cors");
 
 // /api/avatar
 router.post('/avatar/:id', async (req: Request, res: Response) => {
@@ -40,7 +41,7 @@ router.delete('/avatar/:id', async (req: Request, res: Response) => {
 });
 
 
-router.get('/avatar/:id', async (req: Request, res: Response)=>{
+router.get('/avatar/:id',cors(), async (req: Request, res: Response)=>{
     try{
         const user = await User.findById(req.params.id);
         if(user.avatar){
