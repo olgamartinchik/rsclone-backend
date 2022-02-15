@@ -6,7 +6,6 @@ const userConfig = require('config');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const User = require('../model/User');
-const authMiddleware = require('../middleware/auth.middleware')
 
 
 const router = Router();
@@ -125,18 +124,7 @@ router.get('/:id', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
-// /api/auth/id
-router.patch('/:id', async (req: Request, res: Response) => {
-    try {
-        const { userName, email } = req.body;
-        const id = req.params.id;
-        await User.findOneAndUpdate({ _id: id }, { userName, email });
-        const updateUserName = await User.findById(req.params.id);
-        res.status(201).json({ message: 'Settings update', updateUserName });
-    } catch (e) {
-        res.status(500).json({ message: 'Something went wrong, please try again' });
-    }
-});
+
 
 // /api/auth/id
 router.delete('/:id', async (req: Request, res: Response) => {
