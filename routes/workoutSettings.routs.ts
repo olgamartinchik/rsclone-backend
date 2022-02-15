@@ -5,8 +5,6 @@ const router = Router();
 
 // /api/workoutSettings
 router.post('/', async (req: Request, res: Response) => {
-    console.log('Body');
-    console.log('Body', req.body);
     try {
         const { _id, program } = req.body;
 
@@ -38,8 +36,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 });
 
 // /api/workoutSettings/id
-router.patch('/:id', async (req: Request, res: Response) => {
-    console.log('body', req.body);
+router.patch('/:id', async (req: Request, res: Response) => {    
     try {
         const { program } = req.body;
 
