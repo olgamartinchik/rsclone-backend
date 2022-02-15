@@ -14,7 +14,7 @@ res.send("Hello, World!")
 
 app.use(require("morgan")("dev"));
 
-const corsOptions = {
+export const corsOptions = {
   origin: "*",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,

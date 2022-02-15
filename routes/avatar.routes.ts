@@ -6,9 +6,10 @@ const User = require('../model/User');
 const avatarConfig = require('config');
 const Uuid = require('uuid');
 const cors = require("cors");
+import {corsOptions} from '../src/app'
 
 // /api/avatar
-router.post('/avatar/:id', async (req: Request, res: Response) => {
+router.post('/avatar/:id',cors(corsOptions), async (req: Request, res: Response) => {
     try {
         const file = (req as any).files.file;        
         const user = await User.findById((req as any).params.id); 
@@ -23,7 +24,7 @@ router.post('/avatar/:id', async (req: Request, res: Response) => {
     }
 });
 // /api/avatar
-router.delete('/avatar/:id', async (req: Request, res: Response) => {
+router.delete('/avatar/:id',cors(corsOptions), async (req: Request, res: Response) => {
     try {
         const user = await User.findById(req.params.id);        
         await  fs.unlink((avatarConfig.get('staticPath')+"\\"+user.avatar), err => {
@@ -41,7 +42,7 @@ router.delete('/avatar/:id', async (req: Request, res: Response) => {
 });
 
 
-router.get('/avatar/:id',cors(), async (req: Request, res: Response)=>{
+router.get('/avatar/:id',cors(corsOptions), async (req: Request, res: Response)=>{
     try{
         const user = await User.findById(req.params.id);
         if(user.avatar){

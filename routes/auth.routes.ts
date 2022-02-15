@@ -8,6 +8,7 @@ const { check, validationResult } = require('express-validator');
 const User = require('../model/User');
 const authMiddleware = require('../middleware/auth.middleware')
 
+
 const router = Router();
 
 
@@ -91,13 +92,12 @@ router.post(
 
             //по умолчанию статус 200
             res.json({
-                token,
-                user:{                
+                token,        
                 userId: user.id,
                 userName: user.userName,
                 email: user.email,
                 avatar: user.avatar,
-            }});
+            });
         } catch (e) {
             res.status(500).json({ message: 'Something went wrong, please try again' });
         }
