@@ -18,8 +18,7 @@ router.post(
     [
         check('email', 'Incorrect email').isEmail(),
         check(
-            'password',
-            'Password must include one lowercase character, one uppercase character, a number, and a special character.'
+            'password','Incorrect password'
         ).isLength({ min: 6 }),
        
     ],
@@ -129,9 +128,9 @@ router.get('/:id', async (req: Request, res: Response) => {
 // /api/auth/id
 router.patch('/:id', async (req: Request, res: Response) => {
     try {
-        const { userName } = req.body;
+        const { userName, email } = req.body;
         const id = req.params.id;
-        await User.findOneAndUpdate({ _id: id }, { userName });
+        await User.findOneAndUpdate({ _id: id }, { userName, email });
         const updateUserName = await User.findById(req.params.id);
         res.status(201).json({ message: 'Settings update', updateUserName });
     } catch (e) {
