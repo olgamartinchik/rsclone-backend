@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = require('fs');
 const { Router } = require('express');
 const bcrypt = require('bcryptjs');
 const userConfig = require('config');
@@ -51,7 +50,6 @@ router.post('/register', [
             userId: user.id,
             userName: user.userName,
             email: user.email,
-            avatar: user.avatar,
         });
     }
     catch (e) {
@@ -86,7 +84,6 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
             userId: user.id,
             userName: user.userName,
             email: user.email,
-            avatar: user.avatar,
         });
     }
     catch (e) {

@@ -8,6 +8,7 @@ const schema = new Schema({
         type: String,
         default: null,
     },
+    newPassword:{ type: String, required: false, default:'' },
     
 });
 module.exports = model('User', schema);

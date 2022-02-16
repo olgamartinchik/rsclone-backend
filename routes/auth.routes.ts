@@ -1,5 +1,4 @@
 import { Response, Request } from 'express';
-const fs = require('fs');
 const { Router } = require('express');
 const bcrypt = require('bcryptjs');
 const userConfig = require('config');
@@ -30,7 +29,6 @@ router.post(
                     message: 'Incorrect register data',
                 });
             }
-
             const { userName, email, password } = req.body;
             const candidate = await User.findOne({ email });
             const candidateName = await User.findOne({ userName });
@@ -53,7 +51,7 @@ router.post(
                 userId: user.id,
                 userName: user.userName,
                 email: user.email,
-                avatar: user.avatar,
+               
             });
         } catch (e) {
             res.status(500).json({ message: 'Something went wrong, please try again' });
@@ -63,8 +61,7 @@ router.post(
 
 // /api/auth/login
 router.post(
-    '/login',
-    
+    '/login',    
     async (req: Request, res: Response) => {
         try {
             const errors = validationResult(req);
@@ -87,14 +84,13 @@ router.post(
             const token = jwt.sign({ userId: user.id }, userConfig.get('jwtSecret'), {
                 expiresIn: '1h',
             });
-
             //по умолчанию статус 200
             res.json({
                 token,        
                 userId: user.id,
                 userName: user.userName,
                 email: user.email,
-                avatar: user.avatar,
+                
             });
         } catch (e) {
             res.status(500).json({ message: 'Something went wrong, please try again' });
@@ -105,7 +101,6 @@ router.post(
 // /api/auth/users
 router.get(
     '/users',
-
     async (req: Request, res: Response) => {
         try {
             const users = await User.find();
@@ -124,7 +119,6 @@ router.get('/:id', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
-
 
 // /api/auth/id
 router.delete('/:id', async (req: Request, res: Response) => {
