@@ -8,6 +8,6 @@ const schema = new Schema({
         type: String,
         default: null,
     },
-    files: [{ type: Types.ObjectId, ref: 'File' }],
+    
 });
 module.exports = model('User', schema);

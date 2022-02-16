@@ -4,11 +4,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const http = require('http');
 const fileupload = require("express-fileupload");
+const bodyParser = require('body-parser');
 
 const app = express();
 // const authMiddleware = require('../middleware/auth.middleware')
 
 
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 export const corsOptions = {
   origin: "*",
@@ -29,11 +32,12 @@ app.use(express.static('../static/'));
 
 //initialize routs
 app.use("/api", require("../routes/avatar.routes"));
+app.use("/api/menu", require("../routes/userMenu.routes"));
 app.use("/api/editProfile", require("../routes/editProfile.routes"));
 app.use("/api/auth", require("../routes/auth.routes"));
-app.use("/api/userSettings", require("../routes/userSettings.routs"));
-app.use("/api/workouts", require("../routes/workouts.routs"));
-app.use("/api/workoutSettings", require("../routes/workoutSettings.routs"));
+app.use("/api/userSettings", require("../routes/userSettings.routes"));
+app.use("/api/workouts", require("../routes/workouts.routes"));
+app.use("/api/workoutSettings", require("../routes/workoutSettings.routes"));
 
 const PORT = process.env.PORT || config.get("port");
 

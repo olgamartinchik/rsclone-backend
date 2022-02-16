@@ -16,12 +16,11 @@ const userConfig = require('config');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const User = require('../model/User');
-const authMiddleware = require('../middleware/auth.middleware');
 const router = Router();
 // /api/auth/register
 router.post('/register', [
     check('email', 'Incorrect email').isEmail(),
-    check('password', 'Password must include one lowercase character, one uppercase character, a number, and a special character.').isLength({ min: 6 }),
+    check('password', 'Incorrect password').isLength({ min: 6 }),
 ], (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const errors = validationResult(req);
@@ -84,12 +83,10 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         //по умолчанию статус 200
         res.json({
             token,
-            user: {
-                userId: user.id,
-                userName: user.userName,
-                email: user.email,
-                avatar: user.avatar,
-            }
+            userId: user.id,
+            userName: user.userName,
+            email: user.email,
+            avatar: user.avatar,
         });
     }
     catch (e) {
@@ -111,19 +108,6 @@ router.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const user = yield User.findById(req.params.id);
         res.json(user);
-    }
-    catch (e) {
-        res.status(500).json({ message: 'Something went wrong, please try again' });
-    }
-}));
-// /api/auth/id
-router.patch('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { userName } = req.body;
-        const id = req.params.id;
-        yield User.findOneAndUpdate({ _id: id }, { userName });
-        const updateUserName = yield User.findById(req.params.id);
-        res.status(201).json({ message: 'Settings update', updateUserName });
     }
     catch (e) {
         res.status(500).json({ message: 'Something went wrong, please try again' });
