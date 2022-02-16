@@ -14,6 +14,7 @@ const router = Router();
        if(userName){
             if(user.userName===userName){
             user.userName=userName
+           
             }else{
                 const candidateName = await User.findOne({ userName });
                 if (candidateName) {
@@ -49,12 +50,19 @@ const router = Router();
                 
             });
         }
-        if(password&&newPassword){
+        if(password&&!newPassword){
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return   res.status(400).json({ message: 'Invalid password', user});
+               }else{
+                res.status(201).json({ message: 'Passwords match' });
+               }
+        }else if(password&&newPassword){
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
              return   res.status(400).json({ message: 'Invalid password', user});
             }else{
-                
+               
                 const hashedPassword = await bcrypt.hash(newPassword, 12);
                 user.newPassword=hashedPassword
                 user.password=hashedPassword

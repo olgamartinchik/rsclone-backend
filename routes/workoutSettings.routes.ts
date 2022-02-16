@@ -39,7 +39,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 // /api/workoutSettings/id
 router.patch('/:id', async (req: Request, res: Response) => {
-    console.log('body', req.body);
+    // console.log('body', req.body);
     try {
         const { program } = req.body;
 
