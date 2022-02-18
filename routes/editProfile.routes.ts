@@ -11,9 +11,9 @@ const router = Router();
     try{
         const {userName, email, password, newPassword, avatar} = req.body;
         const user = await User.findById(req.params.id);
-        if(avatar){
-            user.avatar=avatar
-        }
+        
+        user.avatar=avatar
+        
         
        if(userName){
             if(user.userName===userName){
