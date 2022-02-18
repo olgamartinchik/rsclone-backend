@@ -15,7 +15,7 @@ router.post('/', async (req: Request, res: Response) =>{
 
             const userMenuId= await UserMenu.findOne({_id})
             if(userMenuId){
-                return res.status(400).json({ message: 'Workout settings already created' });
+                return res.status(400).json({ message: 'User menu already created' });
             }
             await userMenu.save()
             res.status(201).json({message: 'User menu created', _id, userMenu })
@@ -38,6 +38,7 @@ router.patch('/:id', async (req: Request, res: Response) =>{
     try{
         const {periodUserMeal}= req.body
         const userId = req.params.id;
+        console.log('userId',userId)
         await UserMenu.findByIdAndUpdate(
             { _id: userId },
             {
@@ -45,6 +46,7 @@ router.patch('/:id', async (req: Request, res: Response) =>{
             }
         );
         const updateUserMenu = await UserMenu.findOne({ _id: userId });
+        console.log('updateUserMenu',updateUserMenu)
         res.status(201).json({ message: 'Settings update', updateUserMenu });
 
     }catch(e){

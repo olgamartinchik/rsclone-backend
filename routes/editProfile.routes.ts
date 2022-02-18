@@ -9,8 +9,12 @@ const router = Router();
 // /api/editProfile/id
  router.post('/:id', async (req: Request, res: Response) =>{
     try{
-        const {userName, email, password, newPassword} = req.body;
+        const {userName, email, password, newPassword, avatar} = req.body;
         const user = await User.findById(req.params.id);
+        if(avatar){
+            user.avatar=avatar
+        }
+        
        if(userName){
             if(user.userName===userName){
             user.userName=userName
@@ -47,6 +51,7 @@ const router = Router();
                 userId: user.id,
                 userName: user.userName,
                 email: user.email,
+                avatar:user.avatar
                 
             });
         }
@@ -75,7 +80,9 @@ const router = Router();
                 token,
                 userId: user.id,
                 userName: user.userName,
-                email: user.email,});
+                email: user.email,
+                avatar:user.avatar
+            });
                
             
             }

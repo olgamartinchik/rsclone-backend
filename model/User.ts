@@ -6,7 +6,7 @@ const schema = new Schema({
     password: { type: String, required: true },
     avatar: {
         type: String,
-        default: null,
+        default: '',
     },
     newPassword:{ type: String, required: false, default:'' },
     

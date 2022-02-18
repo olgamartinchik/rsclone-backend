@@ -90,6 +90,7 @@ router.post(
                 userId: user.id,
                 userName: user.userName,
                 email: user.email,
+                avatar:user.avatar
                 
             });
         } catch (e) {
