@@ -3,7 +3,6 @@ const { Router } = require('express');
 const UserSettings = require('../model/UserSettings');
 const router = Router();
 
-
 router.post('/', async (req: Request, res: Response) => {
     try {
         const {
@@ -27,7 +26,7 @@ router.post('/', async (req: Request, res: Response) => {
             weekProgress,
             liked,
             progress,
-            birthday
+            birthday,
         } = req.body;
 
         const userSettings = new UserSettings({
@@ -51,7 +50,7 @@ router.post('/', async (req: Request, res: Response) => {
             weekProgress,
             liked,
             progress,
-            birthday
+            birthday,
         });
 
         await userSettings.save();
@@ -71,7 +70,6 @@ router.get('/:userId', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
-
 
 router.patch('/:userId', async (req: Request, res: Response) => {
     try {
@@ -95,7 +93,7 @@ router.patch('/:userId', async (req: Request, res: Response) => {
             weekProgress,
             liked,
             progress,
-            birthday
+            birthday,
         } = req.body;
         const userId = req.params.userId;
 
@@ -121,7 +119,7 @@ router.patch('/:userId', async (req: Request, res: Response) => {
                 weekProgress,
                 liked,
                 progress,
-                birthday
+                birthday,
             }
         );
         const updateUserSettings = await UserSettings.findOne({ userId: userId });
@@ -130,7 +128,6 @@ router.patch('/:userId', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
-
 
 router.delete('/:userId', async (req: Request, res: Response) => {
     try {
@@ -142,7 +139,6 @@ router.delete('/:userId', async (req: Request, res: Response) => {
     }
 });
 
-// 
-
+//
 
 module.exports = router;

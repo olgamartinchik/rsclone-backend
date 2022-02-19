@@ -3,9 +3,7 @@ const { Router } = require('express');
 const WorkoutSettings = require('../model/WorkoutSettings');
 const router = Router();
 
-
 router.post('/', async (req: Request, res: Response) => {
-  
     try {
         const { _id, program } = req.body;
 
@@ -25,8 +23,6 @@ router.post('/', async (req: Request, res: Response) => {
     }
 });
 
-
-
 router.get('/:id', async (req: Request, res: Response) => {
     try {
         const workoutSettings = await WorkoutSettings.findById(req.params.id);
@@ -36,9 +32,7 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
-
 router.patch('/:id', async (req: Request, res: Response) => {
-  
     try {
         const { program } = req.body;
 
@@ -56,8 +50,6 @@ router.patch('/:id', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
-
-
 
 router.delete('/:id', async (req: Request, res: Response) => {
     try {
