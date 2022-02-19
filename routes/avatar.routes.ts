@@ -10,8 +10,8 @@ import { corsOptions } from '../src/app';
 
 router.post('/avatar/:id', cors(corsOptions), async (req: Request, res: Response) => {
     try {
-        const file = (req as any).files.file;
-        const user = await User.findById((req as any).params.id);
+        const file = Object.assign((req as Request).files).file;
+        const user = await User.findById((req as Request).params.id);
         const avatarName = Uuid.v4() + '.jpg';
         file.mv(avatarConfig.get('staticPath') + '\\' + avatarName);
         user.avatar = avatarName;

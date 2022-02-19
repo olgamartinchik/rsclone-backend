@@ -1,3 +1,4 @@
+import { Response, Request } from 'express';
 const express = require('express');
 const config = require('config');
 const mongoose = require('mongoose');
@@ -6,7 +7,6 @@ const fileupload = require('express-fileupload');
 const bodyParser = require('body-parser');
 
 const app = express();
-// const authMiddleware = require('../middleware/auth.middleware')
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
@@ -17,7 +17,7 @@ export const corsOptions = {
     optionSuccessStatus: 200,
 };
 
-app.get('/', (req: any, res: any) => {
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!');
 });
 
