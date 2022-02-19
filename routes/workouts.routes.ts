@@ -3,7 +3,7 @@ const { Router } = require('express');
 const Workouts = require('../model/Workouts');
 const router = Router();
 
-// /api/workouts
+
 router.get(
     '/',
 

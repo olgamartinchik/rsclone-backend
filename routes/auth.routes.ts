@@ -10,7 +10,6 @@ const User = require('../model/User');
 const router = Router();
 
 
-// /api/auth/register
 router.post(
     '/register',    
     [
@@ -59,7 +58,7 @@ router.post(
     }
 );
 
-// /api/auth/login
+
 router.post(
     '/login',    
     async (req: Request, res: Response) => {
@@ -84,7 +83,7 @@ router.post(
             const token = jwt.sign({ userId: user.id }, userConfig.get('jwtSecret'), {
                 expiresIn: '1h',
             });
-            //по умолчанию статус 200
+            
             res.json({
                 token,        
                 userId: user.id,
@@ -99,7 +98,6 @@ router.post(
     }
 );
 
-// /api/auth/users
 router.get(
     '/users',
     async (req: Request, res: Response) => {
@@ -111,7 +109,7 @@ router.get(
         }
     }
 );
-// /api/auth/id
+
 router.get('/:id', async (req: Request, res: Response) => {
     try {
         const user = await User.findById(req.params.id);
@@ -121,7 +119,7 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
-// /api/auth/id
+
 router.delete('/:id', async (req: Request, res: Response) => {
     try {
         const user = await User.findByIdAndRemove({ _id: req.params.id });

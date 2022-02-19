@@ -8,7 +8,7 @@ const Uuid = require('uuid');
 const cors = require("cors");
 import {corsOptions} from '../src/app'
 
-// /api/avatar
+
 router.post('/avatar/:id',cors(corsOptions), async (req: Request, res: Response) => {
     try {
         const file = (req as any).files.file;        
@@ -23,7 +23,7 @@ router.post('/avatar/:id',cors(corsOptions), async (req: Request, res: Response)
         res.status(500).json({ message: 'Uploaded avatar error', error: e });
     }
 });
-// /api/avatar
+
 router.delete('/avatar/:id',cors(corsOptions), async (req: Request, res: Response) => {
     try {
         const user = await User.findById(req.params.id);        

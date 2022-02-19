@@ -25,12 +25,12 @@ app.get('/',(req:any,res:any)=>{
   
 app.use(require("morgan")("dev"));
 app.use(cors(corsOptions));
-// app.use(cors());
+
 app.use(fileupload());
 app.use(express.json({ extended: true }));
 app.use(express.static('../static/'));
 
-//initialize routs
+
 app.use("/api", require("../routes/avatar.routes"));
 app.use("/api/menu", require("../routes/userMenu.routes"));
 app.use("/api/editProfile", require("../routes/editProfile.routes"));

@@ -3,7 +3,7 @@ const { Router } = require('express');
 const WorkoutSettings = require('../model/WorkoutSettings');
 const router = Router();
 
-// /api/workoutSettings
+
 router.post('/', async (req: Request, res: Response) => {
   
     try {
@@ -25,7 +25,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
 });
 
-// /api/workoutSettings/id
+
 
 router.get('/:id', async (req: Request, res: Response) => {
     try {
@@ -36,9 +36,9 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
-// /api/workoutSettings/id
+
 router.patch('/:id', async (req: Request, res: Response) => {
-    // console.log('body', req.body);
+  
     try {
         const { program } = req.body;
 
@@ -57,7 +57,7 @@ router.patch('/:id', async (req: Request, res: Response) => {
     }
 });
 
-// /api/workoutSettings/id
+
 
 router.delete('/:id', async (req: Request, res: Response) => {
     try {

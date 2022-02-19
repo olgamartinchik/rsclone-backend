@@ -3,7 +3,6 @@ const { Router } = require('express');
 const UserMenu = require('../model/UserMenu');
 const router = Router();
 
-// /api/menu
 router.post('/', async (req: Request, res: Response) =>{
     try{
         const {

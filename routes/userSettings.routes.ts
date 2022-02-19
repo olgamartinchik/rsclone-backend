@@ -3,7 +3,7 @@ const { Router } = require('express');
 const UserSettings = require('../model/UserSettings');
 const router = Router();
 
-// /api/userSettings
+
 router.post('/', async (req: Request, res: Response) => {
     try {
         const {
@@ -61,7 +61,7 @@ router.post('/', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 });
-// /api/userSettings/userId
+
 router.get('/:userId', async (req: Request, res: Response) => {
     try {
         const userSettings = await UserSettings.findOne({ userId: req.params.userId });
@@ -72,7 +72,7 @@ router.get('/:userId', async (req: Request, res: Response) => {
     }
 });
 
-// /api/userSettings/userId
+
 router.patch('/:userId', async (req: Request, res: Response) => {
     try {
         const {
@@ -131,7 +131,7 @@ router.patch('/:userId', async (req: Request, res: Response) => {
     }
 });
 
-// /api/userSettings/userId
+
 router.delete('/:userId', async (req: Request, res: Response) => {
     try {
         const userSettings = await UserSettings.findOneAndDelete({ userId: req.params.userId });

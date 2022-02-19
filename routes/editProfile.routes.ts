@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../model/User');
 const router = Router();
 
-// /api/editProfile/id
+
  router.post('/:id', async (req: Request, res: Response) =>{
     try{
         const {userName, email, password, newPassword, avatar} = req.body;
