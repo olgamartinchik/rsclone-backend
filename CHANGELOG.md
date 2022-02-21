@@ -1,0 +1,84 @@
+- Merge pull request #2 from olgamartinchik/backend
+- fix: fix warning eslint
+- fix: update dist
+- fix: fix error eslint
+- fix: delete comments
+- fix: fix edit prifile route
+- fix: fix editProfil token
+- fix: fix conflict
+- fix: fix route edit profile
+- feat: add route user menu
+- fix: merge main
+- feat: add edit profile route
+- fix: update dist
+- feat: add route for update user data
+- Merge branch 'main' of https://git.heroku.com/rsclonebackend into main
+- fix: fix auth rout patch
+- Merge branch 'main' of https://git.heroku.com/rsclonebackend into main
+- fix: fix response auth login, add cors options to routers avatar
+- Merge branch 'main' of https://git.heroku.com/rsclonebackend into main
+- feat: add cors un the router get avatar
+- Merge branch 'main' of https://git.heroku.com/rsclonebackend into main
+- fix: fix auth login
+- fix: fix conflict
+- feat: add token to get file
+- fix: fix conflict
+- fix: fix conflict
+- fix: add fileupload
+- fix: fix conflict
+- fix: fix lint
+- feat: add router for avatar
+- fix: update dist
+- Merge branch 'main' of https://git.heroku.com/rsclonebackend into main
+- fix: fix schema user settings
+- Merge branch 'main' of https://git.heroku.com/rsclonebackend into main
+- fix: completed dist
+- fix: fix workout schema
+- Merge branch 'main' of https://git.heroku.com/rsclonebackend into main
+- fix: fix schema for user settings
+- fix: fix conflict
+- fix: refresh user settings
+- fix: refresh user settings
+- fix: refresh user settings
+- Merge branch 'main' of https://git.heroku.com/rsclonebackend into main
+- fix: fix schema for workoutSettings
+- feat: update build
+- Merge branch 'main' of https://git.heroku.com/rsclonebackend into main
+- feat: add endpoint for delete user
+- fix: add new fields for user settings
+- fix: fix tsconfig.json
+- fix: fix tsconfig.json
+- fix: fix tsconfig.json
+- fix: fix packaje.json
+- fix: delete console.log
+- fix: add declare module express
+- fix: add middleware
+- fix: fix conflict
+- feat: add routs fo workout settings
+- fix:fix import
+- fix:fix package.json
+- fix:fix package.json
+- fix:fix import
+- fix:fix package.json
+- fix:fix package.json
+- fix:fix package.json
+- fix: fix path
+- fix: fix schema mane for workouts
+- fix: fix conflicts
+- fix: add startDate in the user settings schema
+- fix: fix link
+- fix: fix links
+- fix: fix conflict
+- feat: add user settings routs
+- frat: add token in registration rout
+- feat: add token in the registration rout
+- fix:fix build and path to files
+- feat: add workouts route
+- feat: add rout for all users and user by id
+- initial commit
+- initial commit
+- Merge pull request #1 from olgamartinchik/backend
+- Merge branch 'develop' into backend
+- init: add gitignore
+- init: moving backend from rsclon repository to rsclon-backend repository
+- Initial commit
