@@ -5,7 +5,7 @@
     "main": "app",
     "scripts": {
         "start": "tsc && node dist/src/app.js",
-        "prod": "node src/app.js",
+        "prod": "node app.js",
         "build": "tsc",
         "lint": "eslint . --ext .ts && prettier --check .",
         "lint:fix": "eslint . --ext .ts --fix && prettier --write .",
