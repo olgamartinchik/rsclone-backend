@@ -1,0 +1,11 @@
+{
+    "defaultSeverity": "error",
+    "extends": ["tslint:recommended"],
+    "jsRules": {},
+    "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "no-debugger": "off",
+        "no-console": 0
+    },
+    "rulesDirectory": []
+}
